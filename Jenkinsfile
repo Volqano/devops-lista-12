@@ -16,16 +16,5 @@ pipeline {
                 sh './venv/bin/python3 -m unittest test_main.py'
             }
         }
-
-        stage('Deploy') {
-            when {
-                expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
-            }
-            steps {
-                echo 'Deploying application...'
-                sh 'cp main.py /tmp/deployed_app.py'
-                sh 'ls -l /tmp/deployed_app.py'
-            }
-        }
     }
 }
